@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/webflow
+        http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
+        start-state="start">
+
+    <view-state id="start" view="list">
+        <transition on="add" to="add-step-1"/>
+    </view-state>
+
+    <view-state id="add-step-1" view="add-step-1">
+        <transition on="next" to="add-step-2"/>
+    </view-state>
+
+    <view-state id="add-step-2" view="add-step-2">
+        <transition on="next" to="review"/>
+        <transition on="back" to="add-step-1"/>
+    </view-state>
+
+    <view-state id="review" view="review">
+        <transition on ="next" to="complete"/>
+        <transition on="back" to="add-step-2"/>
+    </view-state>
+
+    <view-state id="complete" view="complete">
+        <transition on="continue" to="finish"/>
+    </view-state>
+
+    <end-state id="finish"/>
+
+    <view-state id="show" view="show">
+        <transition on ="back" to="start"/>
+    </view-state>
+
+    <global-transitions>
+        <transition on="exit" to="start"/>
+    </global-transitions>
+    
+</flow>
